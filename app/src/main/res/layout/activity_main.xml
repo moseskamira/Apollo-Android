@@ -6,13 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/view_authors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="112dp"
+        android:text="All Authors"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/view_books"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Books"
+        app:layout_constraintBottom_toBottomOf="@+id/view_authors"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view_authors" />
+
+    <Button
+        android:id="@+id/add_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Add Author"
+        app:layout_constraintStart_toStartOf="@+id/view_authors"
+        app:layout_constraintTop_toBottomOf="@+id/view_authors" />
+
+    <Button
+        android:id="@+id/add_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:text="Add Book"
+        app:layout_constraintBottom_toBottomOf="@+id/add_author"
+        app:layout_constraintEnd_toEndOf="@+id/view_books"
+        app:layout_constraintStart_toEndOf="@+id/add_author"
+        app:layout_constraintTop_toTopOf="@+id/add_author" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
 package com.example.apolloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -33,7 +33,8 @@ public class Authors extends AppCompatActivity {
 
     private void initializeRecyclerView() {
         authorsRecyclerView.setHasFixedSize(true);
-        authorsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        authorsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        authorsRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
     }
 
     private void getAllAuthors() {
@@ -49,9 +50,6 @@ public class Authors extends AppCompatActivity {
                                 MyAuthor myAuthor = new MyAuthor();
                                 myAuthor.setFirstName(response.data().findAllAuthors.get(i).firstName);
                                 myAuthor.setLastName(response.data().findAllAuthors.get(i).lastName);
-                                Log.d("FIRSTNAME ", myAuthor.getFirstName());
-                                Log.d("LASTNAME ", myAuthor.getLastName());
-
                                 authorsList.add(myAuthor);
                             }
 

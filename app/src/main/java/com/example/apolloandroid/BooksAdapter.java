@@ -12,15 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHolder> {
-    Context mContext;
-    ArrayList<MyBook> booksList;
+    private Context mContext;
+    private ArrayList<MyBook> booksList;
 
-
-    public BooksAdapter(Context context, ArrayList<MyBook> mBooksList) {
+    BooksAdapter(Context context, ArrayList<MyBook> mBooksList) {
         this.mContext = context;
         this.booksList = mBooksList;
-
-
     }
 
     @NonNull
@@ -45,12 +42,11 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
         return booksList.size();
     }
 
-    public class BooksViewHolder extends RecyclerView.ViewHolder{
+    class BooksViewHolder extends RecyclerView.ViewHolder{
         TextView bookTitle;
         TextView bookIsbn;
 
-
-        public BooksViewHolder(@NonNull View itemView) {
+        BooksViewHolder(@NonNull View itemView) {
             super(itemView);
             bookTitle = itemView.findViewById(R.id.book_title);
             bookIsbn = itemView.findViewById(R.id.book_isbn);

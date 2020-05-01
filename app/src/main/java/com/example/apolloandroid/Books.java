@@ -1,7 +1,7 @@
 package com.example.apolloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -32,7 +32,8 @@ public class Books extends AppCompatActivity {
 
     private void initializeBooksRecyclerView() {
         booksRecyclerView.setHasFixedSize(true);
-        booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        booksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        booksRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
     private void getAllAvailableBooks() {
@@ -40,8 +41,7 @@ public class Books extends AppCompatActivity {
                 FindAvailableBooksQuery
                         .builder()
                         .build())
-                .enqueue(
-                        new ApolloCall.Callback<FindAvailableBooksQuery.Data>() {
+                .enqueue(new ApolloCall.Callback<FindAvailableBooksQuery.Data>() {
                             @Override
                             public void onResponse(@NotNull Response<FindAvailableBooksQuery.Data> response) {
                                 if (response.data().findAllBooks.size() > 0) {
@@ -75,6 +75,7 @@ public class Books extends AppCompatActivity {
                         }
                 );
     }
+
 
 
 }

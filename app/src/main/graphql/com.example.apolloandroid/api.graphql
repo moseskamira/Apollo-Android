@@ -13,5 +13,6 @@ query findAvailableBooks{
       lastName
     }
     pageCount
+    isbn
   }
 }

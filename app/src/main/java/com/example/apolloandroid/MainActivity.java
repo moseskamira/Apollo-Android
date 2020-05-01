@@ -2,46 +2,71 @@ package com.example.apolloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
-import com.apollographql.apollo.ApolloCall;
-import com.apollographql.apollo.api.Response;
-import com.apollographql.apollo.exception.ApolloException;
-
-import org.jetbrains.annotations.NotNull;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    Button viewAuthors, viewBooks, addAuthor, addBook;
+    Intent navigationIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        viewAuthors = findViewById(R.id.view_authors);
+        viewBooks = findViewById(R.id.view_books);
+        addAuthor = findViewById(R.id.add_author);
+        addBook = findViewById(R.id.add_book);
 
-        getAllAuthors();
+        viewAuthors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAllAuthorsView();
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v != null) {
+            if (v == viewBooks) {
+                gotToAllBooksView();
+
+            }else if (v.getId() == R.id.add_author) {
+                goToAddAuthorView();
+
+            }else if (v.getId() ==  R.id.add_book) {
+                goToAddBookView();
+
+            }
+
+
+        }
+    }
+
+    private void goToAllAuthorsView() {
+       navigationIntent = new Intent(this, Authors.class);
+       startActivity(navigationIntent);
+    }
+
+    private void gotToAllBooksView() {
+        Log.d("YOUCLICKED", "ALLBOOKS");
+        navigationIntent = new Intent(this, Books.class);
+        startActivity(navigationIntent);
+    }
+
+    private void goToAddAuthorView() {
+
+    }
+
+    private void goToAddBookView() {
+
     }
 
 
-    private void getAllAuthors() {
-
-        ApolloConnector.setupApollo().query(
-                FindAllAuthorsQuery
-                        .builder()
-                        .build())
-                .enqueue(new ApolloCall.Callback<FindAllAuthorsQuery.Data>() {
-
-
-                    @Override
-                    public void onResponse(@NotNull Response<FindAllAuthorsQuery.Data> response) {
-                        Log.d("MYAUTHOR ", response.data().findAllAuthors.get(1).firstName);
-
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull ApolloException e) {
-
-                    }
-
-
-    });
-}}
+}

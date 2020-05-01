@@ -1,6 +1,17 @@
-query findAllAuthors{
+query findAvailableAuthors{
   findAllAuthors{
     firstName
     lastName
+  }
+}
+
+query findAvailableBooks{
+  findAllBooks{
+    title
+    author {
+      firstName
+      lastName
+    }
+    pageCount
   }
 }

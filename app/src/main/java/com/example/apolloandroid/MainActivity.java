@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     Button viewAuthors, viewBooks, addAuthor, addBook;
     Intent navigationIntent;
 
@@ -29,25 +29,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v != null) {
-            if (v == viewBooks) {
+        viewBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 gotToAllBooksView();
-
-            }else if (v.getId() == R.id.add_author) {
-                goToAddAuthorView();
-
-            }else if (v.getId() ==  R.id.add_book) {
-                goToAddBookView();
-
             }
+        });
 
-
-        }
     }
+
+//    @Override
+//    public void onClick(View v) {
+//        if (v != null) {
+//            if (v == viewBooks) {
+//
+//
+//            }else if (v.getId() == R.id.add_author) {
+//                goToAddAuthorView();
+//
+//            }else if (v.getId() ==  R.id.add_book) {
+//                goToAddBookView();
+//
+//            }
+//
+//
+//        }
+//    }
 
     private void goToAllAuthorsView() {
        navigationIntent = new Intent(this, Authors.class);

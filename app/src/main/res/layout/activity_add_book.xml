@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBookActivity">
+
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="90dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="40dp"
+        android:text="Book Title"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/title_ed"
+        android:layout_width="117dp"
+        android:layout_height="39dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/title_tv"
+        app:layout_constraintTop_toTopOf="@+id/title_tv" />
+
+    <TextView
+        android:id="@+id/isbn_tv"
+        android:layout_width="92dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="40dp"
+        android:text="Book ISBN"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/title_tv"
+        app:layout_constraintStart_toStartOf="@+id/title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/title_tv" />
+
+    <EditText
+        android:id="@+id/isbn_ed"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/isbn_tv"
+        app:layout_constraintEnd_toEndOf="@+id/title_ed"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/isbn_tv"
+        app:layout_constraintTop_toTopOf="@+id/isbn_tv"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <TextView
+        android:id="@+id/page_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Page Count"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/isbn_tv"
+        app:layout_constraintStart_toStartOf="@+id/isbn_tv"
+        app:layout_constraintTop_toBottomOf="@+id/isbn_tv" />
+
+    <EditText
+        android:id="@+id/page_count_ed"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/page_count_tv"
+        app:layout_constraintEnd_toEndOf="@+id/isbn_ed"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/page_count_tv"
+        app:layout_constraintTop_toTopOf="@+id/page_count_tv" />
+
+    <TextView
+        android:id="@+id/author_tv"
+        android:layout_width="90dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="40dp"
+        android:text="Author ID"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/page_count_tv"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="@+id/page_count_tv"
+        app:layout_constraintTop_toBottomOf="@+id/page_count_tv" />
+
+    <EditText
+        android:id="@+id/author_ed"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:textSize="18sp"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/author_tv"
+        app:layout_constraintEnd_toEndOf="@+id/page_count_ed"
+        app:layout_constraintStart_toEndOf="@+id/author_tv"
+        app:layout_constraintTop_toTopOf="@+id/author_tv" />
+
+    <Button
+        android:id="@+id/add_book_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="ADD Book"
+        app:layout_constraintTop_toBottomOf="@+id/author_tv"
+        tools:layout_editor_absoluteX="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

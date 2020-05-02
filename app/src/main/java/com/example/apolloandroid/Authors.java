@@ -12,6 +12,7 @@ import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
 import com.example.apolloandroid.adapters.AuthorsAdapter;
 import com.example.apolloandroid.models.MyAuthor;
+import com.example.apolloandroid.connector.ApolloConnector;
 
 import org.jetbrains.annotations.NotNull;
 

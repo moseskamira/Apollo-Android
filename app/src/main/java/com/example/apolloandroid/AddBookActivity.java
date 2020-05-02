@@ -2,15 +2,18 @@ package com.example.apolloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.apolloandroid.connector.ApolloConnector;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -57,19 +60,37 @@ public class AddBookActivity extends AppCompatActivity {
     }
 
     private void postBookDetails(String bT, String bI, int bPgC, String ba) {
-
         ApolloConnector.setupApollo().mutate(new PostBookDataMutation(bT, bI, bPgC, ba)).enqueue(
                 new ApolloCall.Callback<PostBookDataMutation.Data>() {
             @Override
             public void onResponse(@NotNull Response<PostBookDataMutation.Data> response) {
-                Log.d("POSTEDBOOK ", response.data().newBook.title);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(AddBookActivity.this, "Book Added Successfully !"
+                                , Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AddBookActivity.this, MainActivity.class));
+                    }
+                });
+
             }
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-
+                Thread thread = new Thread(){
+                    public void run(){
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(AddBookActivity.this, "Failed To Add Book"
+                                        , Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                };
+                thread.start();
             }
         });
 
     }
+
 }

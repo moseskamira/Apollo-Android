@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Books"></activity>
+        <activity android:name=".AddAuthorActivity"></activity>
+        <activity android:name=".Books" />
         <activity android:name=".Authors" />
         <activity android:name=".MainActivity">
             <intent-filter>

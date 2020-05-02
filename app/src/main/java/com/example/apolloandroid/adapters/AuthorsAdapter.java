@@ -1,4 +1,4 @@
-package com.example.apolloandroid;
+package com.example.apolloandroid.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apolloandroid.models.MyAuthor;
+import com.example.apolloandroid.R;
+
 import java.util.ArrayList;
 
 public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.AuthorsViewHolder> {
@@ -17,7 +20,7 @@ public class AuthorsAdapter extends RecyclerView.Adapter<AuthorsAdapter.AuthorsV
     private Context authorsContext;
     private ArrayList<MyAuthor> myAuthorsList;
 
-    AuthorsAdapter(Context mContext, ArrayList<MyAuthor> myList) {
+    public AuthorsAdapter(Context mContext, ArrayList<MyAuthor> myList) {
         authorsContext = mContext;
         myAuthorsList = myList;
     }

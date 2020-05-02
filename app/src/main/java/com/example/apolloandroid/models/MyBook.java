@@ -1,4 +1,4 @@
-package com.example.apolloandroid;
+package com.example.apolloandroid.models;
 
 public class MyBook {
     String title;

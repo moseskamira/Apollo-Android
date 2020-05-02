@@ -16,3 +16,10 @@ query findAvailableBooks{
     isbn
   }
 }
+
+mutation postAuthorData($first: String!, $last: String!){
+  newAuthor(firstName: $first, lastName: $last) {
+    firstName
+    lastName
+  }
+}

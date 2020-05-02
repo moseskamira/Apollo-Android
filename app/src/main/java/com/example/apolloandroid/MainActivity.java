@@ -36,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        addAuthor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddAuthorView();
+
+            }
+        });
+
     }
 
 //    @Override
@@ -68,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToAddAuthorView() {
+        navigationIntent = new Intent(this, AddAuthorActivity.class);
+        startActivity(navigationIntent);
 
     }
 

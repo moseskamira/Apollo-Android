@@ -1,4 +1,4 @@
-package com.example.apolloandroid;
+package com.example.apolloandroid.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,13 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.apolloandroid.models.MyBook;
+import com.example.apolloandroid.R;
+
 import java.util.ArrayList;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHolder> {
     private Context mContext;
     private ArrayList<MyBook> booksList;
 
-    BooksAdapter(Context context, ArrayList<MyBook> mBooksList) {
+    public BooksAdapter(Context context, ArrayList<MyBook> mBooksList) {
         this.mContext = context;
         this.booksList = mBooksList;
     }

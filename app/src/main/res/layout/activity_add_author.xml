@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAuthorActivity">
+
+    <TextView
+        android:id="@+id/fn_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="64dp"
+        android:text="FirstName"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fn_ed"
+        android:layout_width="117dp"
+        android:layout_height="39dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fn_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fn_tv"
+        app:layout_constraintTop_toTopOf="@+id/fn_tv" />
+
+    <TextView
+        android:id="@+id/ln_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="LastName"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/fn_tv"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/fn_tv"
+        app:layout_constraintTop_toBottomOf="@+id/fn_tv" />
+
+    <EditText
+        android:id="@+id/ln_ed"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ln_tv"
+        app:layout_constraintEnd_toEndOf="@+id/fn_ed"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/ln_tv"
+        app:layout_constraintTop_toTopOf="@+id/ln_tv"
+        app:layout_constraintVertical_bias="0.466" />
+
+    <Button
+        android:id="@+id/add_author_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="ADD Author"
+        app:layout_constraintEnd_toEndOf="@+id/ln_ed"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toStartOf="@+id/ln_tv"
+        app:layout_constraintTop_toBottomOf="@+id/ln_tv" />
+</androidx.constraintlayout.widget.ConstraintLayout>

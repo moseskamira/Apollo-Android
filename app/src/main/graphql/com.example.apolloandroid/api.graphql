@@ -23,3 +23,12 @@ mutation postAuthorData($first: String!, $last: String!){
     lastName
   }
 }
+
+mutation postBookData($bTitle: String!, $bIsbn: String!, $bPgCount: Int!, $bAuthor: ID! ){
+  newBook(title: $bTitle, isbn: $bIsbn, pageCount: $bPgCount, author: $bAuthor) {
+    title
+    author{
+      firstName
+    }
+  }
+}

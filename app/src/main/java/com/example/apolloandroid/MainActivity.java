@@ -44,25 +44,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAddBookView();
+
+            }
+        });
+
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        if (v != null) {
-//            if (v == viewBooks) {
-//
-//
-//            }else if (v.getId() == R.id.add_author) {
-//                goToAddAuthorView();
-//
-//            }else if (v.getId() ==  R.id.add_book) {
-//                goToAddBookView();
-//
-//            }
-//
-//
-//        }
-//    }
 
     private void goToAllAuthorsView() {
        navigationIntent = new Intent(this, Authors.class);
@@ -82,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToAddBookView() {
-
+        navigationIntent = new Intent(this, AddBookActivity.class);
+        startActivity(navigationIntent);
     }
 
 

@@ -45,17 +45,14 @@ public class AddAuthorActivity extends AppCompatActivity {
 
             if (!lastNameEt.getText().toString().isEmpty()) {
                 lastName = lastNameEt.getText().toString();
-
                 postAuthorDetails(firstName, lastName);
 
             }else {
                 Log.d("ADD", "LastName");
-
             }
         }else {
             Log.d("ADD", "FirstName");
         }
-
     }
 
     public void postAuthorDetails(String myFirst, String myLast) {
@@ -64,7 +61,6 @@ public class AddAuthorActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NotNull Response<PostAuthorDataMutation.Data> response) {
                         Log.d("POSTED", response.data().newAuthor.firstName);
-
                     }
 
                     @Override
@@ -74,12 +70,6 @@ public class AddAuthorActivity extends AppCompatActivity {
                     }
                 }
         );
-
-
-
     }
-
-
-
 
 }

@@ -80,7 +80,6 @@ public class AddAuthorActivity extends AppCompatActivity {
                             public void run() {
                                 Toast.makeText(AddAuthorActivity.this,
                                         "Failed To Add Author !", Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(AddAuthorActivity.this, MainActivity.class));
                             }
                         });
                     }

@@ -33,11 +33,6 @@ This project is intended to demo the use of Apollo Android to handle GraphQL dat
 - Open in project in Android studio
 - Run the application using AVD or a real connected device
 
-## Screenshots
-
-
-
-- 
 
 
 

@@ -1,4 +1,4 @@
-package com.example.apolloandroid;
+package com.example.apolloandroid.connector;
 
 import com.apollographql.apollo.ApolloClient;
 

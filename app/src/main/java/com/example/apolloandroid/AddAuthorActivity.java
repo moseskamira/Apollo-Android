@@ -2,15 +2,18 @@ package com.example.apolloandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.api.Response;
 import com.apollographql.apollo.exception.ApolloException;
+import com.example.apolloandroid.connector.ApolloConnector;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -60,13 +63,26 @@ public class AddAuthorActivity extends AppCompatActivity {
                 new ApolloCall.Callback<PostAuthorDataMutation.Data>() {
                     @Override
                     public void onResponse(@NotNull Response<PostAuthorDataMutation.Data> response) {
-                        Log.d("POSTED", response.data().newAuthor.firstName);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(AddAuthorActivity.this,
+                                        "Author Added Successfully !", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(AddAuthorActivity.this, MainActivity.class));
+                            }
+                        });
                     }
 
                     @Override
                     public void onFailure(@NotNull ApolloException e) {
-                        Log.d("FAILURE", e.getMessage().toString());
-
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(AddAuthorActivity.this,
+                                        "Failed To Add Author !", Toast.LENGTH_SHORT).show();
+//                                startActivity(new Intent(AddAuthorActivity.this, MainActivity.class));
+                            }
+                        });
                     }
                 }
         );

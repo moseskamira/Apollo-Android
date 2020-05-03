@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -22,6 +23,7 @@ public class Books extends AppCompatActivity {
     ArrayList<MyBook> booksList;
     RecyclerView booksRecyclerView;
     BooksAdapter booksAdapter;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class Books extends AppCompatActivity {
         booksList = new ArrayList<>();
         booksRecyclerView = findViewById(R.id.books_recycler_view);
         initializeBooksRecyclerView();
+        progressDialog = new ProgressDialog(this);
         getAllAvailableBooks();
     }
 
@@ -40,6 +43,8 @@ public class Books extends AppCompatActivity {
     }
 
     private void getAllAvailableBooks() {
+        progressDialog.setMessage("Fetching Books");
+        progressDialog.show();
         ApolloConnector.setupApollo().query(
                 FindAvailableBooksQuery
                         .builder()
@@ -47,6 +52,8 @@ public class Books extends AppCompatActivity {
                 .enqueue(new ApolloCall.Callback<FindAvailableBooksQuery.Data>() {
                             @Override
                             public void onResponse(@NotNull Response<FindAvailableBooksQuery.Data> response) {
+                                progressDialog.dismiss();
+
                                 if (response.data().findAllBooks.size() > 0) {
                                     for (int j=0; j < response.data().findAllBooks.size(); j++) {
                                         MyBook myBook = new MyBook();
@@ -73,6 +80,8 @@ public class Books extends AppCompatActivity {
 
                             @Override
                             public void onFailure(@NotNull ApolloException e) {
+                                progressDialog.dismiss();
+                                e.printStackTrace();
 
                             }
                         }

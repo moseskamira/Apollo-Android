@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -40,63 +41,58 @@ public class Authors extends AppCompatActivity {
 
     private void initializeRecyclerView() {
         authorsRecyclerView.setHasFixedSize(true);
-        authorsRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
+        authorsRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
 
     private void getAllAuthors() {
         progressDialog.setMessage("Fetching Authors");
         progressDialog.show();
         ApolloConnector.setupApollo().query(FindAvailableAuthorsQuery
-                        .builder()
-                        .build())
+                .builder()
+                .build())
                 .enqueue(new ApolloCall.Callback<FindAvailableAuthorsQuery.Data>() {
 
                     @Override
                     public void onResponse(@NotNull Response<FindAvailableAuthorsQuery.Data> response) {
-                        try {
-                            Thread.sleep(1000);
+
+                        assert response.data() != null;
+                        if (response.data().findAllAuthors.size() > 0) {
                             progressDialog.dismiss();
-
-                            assert response.data() != null;
-                            if (response.data().findAllAuthors.size() > 0) {
-                                for (int i=0; i < response.data().findAllAuthors.size(); i++) {
-                                    MyAuthor myAuthor = new MyAuthor();
-                                    myAuthor.setFirstName(response.data().findAllAuthors.get(i).firstName);
-                                    myAuthor.setLastName(response.data().findAllAuthors.get(i).lastName);
-                                    authorsList.add(myAuthor);
-                                }
-
-                                if (!authorsList.isEmpty()) {
-                                    runOnUiThread(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            myAuthorsAdapter = new AuthorsAdapter(getApplicationContext(), authorsList);
-                                            authorsRecyclerView.setAdapter(myAuthorsAdapter);
-                                        }
-                                    });
-                                }else {
-                                    Log.d("EMPTY", "LIST");
-                                }
-
-                            }else {
-                                Log.d("NOOBJECT", "FETCHED");
+                            for (int i = 0; i < response.data().findAllAuthors.size(); i++) {
+                                MyAuthor myAuthor = new MyAuthor();
+                                myAuthor.setFirstName(response.data().findAllAuthors.get(i).firstName);
+                                myAuthor.setLastName(response.data().findAllAuthors.get(i).lastName);
+                                authorsList.add(myAuthor);
                             }
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                            if (!authorsList.isEmpty()) {
+                                runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        myAuthorsAdapter = new AuthorsAdapter(getApplicationContext(), authorsList);
+                                        authorsRecyclerView.setAdapter(myAuthorsAdapter);
+                                    }
+                                });
+                            } else {
+                                Log.d("EMPTY", "LIST");
+                            }
+
+                        } else {
+                            Log.d("NOOBJECT", "FETCHED");
                         }
 
                     }
 
                     @Override
                     public void onFailure(@NotNull ApolloException e) {
-                        progressDialog.dismiss();
                         e.printStackTrace();
 
                     }
                 });
+
     }
+
 }
 
 

@@ -32,6 +32,7 @@ public class Authors extends AppCompatActivity {
         authorsRecyclerView = findViewById(R.id.authors_recycler_view);
         authorsList = new ArrayList<>();
         progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
         initializeRecyclerView();
         getAllAuthors();
 
@@ -39,7 +40,6 @@ public class Authors extends AppCompatActivity {
 
     private void initializeRecyclerView() {
         authorsRecyclerView.setHasFixedSize(true);
-//        authorsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         authorsRecyclerView.setLayoutManager(new GridLayoutManager(this,3));
     }
 
@@ -53,32 +53,40 @@ public class Authors extends AppCompatActivity {
 
                     @Override
                     public void onResponse(@NotNull Response<FindAvailableAuthorsQuery.Data> response) {
-                        progressDialog.dismiss();
+                        try {
+                            Thread.sleep(1000);
+                            progressDialog.dismiss();
 
-                        if (response.data().findAllAuthors.size() > 0) {
-                            for (int i=0; i < response.data().findAllAuthors.size(); i++) {
-                                MyAuthor myAuthor = new MyAuthor();
-                                myAuthor.setFirstName(response.data().findAllAuthors.get(i).firstName);
-                                myAuthor.setLastName(response.data().findAllAuthors.get(i).lastName);
-                                authorsList.add(myAuthor);
-                            }
+                            assert response.data() != null;
+                            if (response.data().findAllAuthors.size() > 0) {
+                                for (int i=0; i < response.data().findAllAuthors.size(); i++) {
+                                    MyAuthor myAuthor = new MyAuthor();
+                                    myAuthor.setFirstName(response.data().findAllAuthors.get(i).firstName);
+                                    myAuthor.setLastName(response.data().findAllAuthors.get(i).lastName);
+                                    authorsList.add(myAuthor);
+                                }
 
-                            if (!authorsList.isEmpty()) {
-                                runOnUiThread(new Runnable() {
+                                if (!authorsList.isEmpty()) {
+                                    runOnUiThread(new Runnable() {
 
-                                    @Override
-                                    public void run() {
-                                        myAuthorsAdapter = new AuthorsAdapter(getApplicationContext(), authorsList);
-                                        authorsRecyclerView.setAdapter(myAuthorsAdapter);
-                                    }
-                                });
+                                        @Override
+                                        public void run() {
+                                            myAuthorsAdapter = new AuthorsAdapter(getApplicationContext(), authorsList);
+                                            authorsRecyclerView.setAdapter(myAuthorsAdapter);
+                                        }
+                                    });
+                                }else {
+                                    Log.d("EMPTY", "LIST");
+                                }
+
                             }else {
-                                Log.d("EMPTY", "LIST");
+                                Log.d("NOOBJECT", "FETCHED");
                             }
 
-                        }else {
-                            Log.d("NOOBJECT", "FETCHED");
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
+
                     }
 
                     @Override

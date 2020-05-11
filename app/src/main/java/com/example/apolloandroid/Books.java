@@ -31,16 +31,13 @@ public class Books extends AppCompatActivity {
         setContentView(R.layout.activity_books);
         booksList = new ArrayList<>();
         booksRecyclerView = findViewById(R.id.books_recycler_view);
-        initializeBooksRecyclerView();
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
+
         getAllAvailableBooks();
     }
 
-    private void initializeBooksRecyclerView() {
-        booksRecyclerView.setHasFixedSize(true);
-        booksRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-    }
+
 
     private void getAllAvailableBooks() {
         progressDialog.setMessage("Fetching Books");
@@ -60,14 +57,12 @@ public class Books extends AppCompatActivity {
                                          myBook.setIsbn(response.data().findAllBooks.get(j).isbn());
                                          booksList.add(myBook);
                                      }
-
                                      if (!booksList.isEmpty()) {
                                          runOnUiThread(new Runnable() {
 
                                              @Override
                                              public void run() {
-                                                 booksAdapter = new BooksAdapter(getApplicationContext(), booksList);
-                                                 booksRecyclerView.setAdapter(booksAdapter);
+                                                 initializeBooksRecyclerView(booksList);
                                              }
                                          });
                                      } else {
@@ -84,7 +79,12 @@ public class Books extends AppCompatActivity {
                              }
                          }
                 );
-
     }
 
+    private void initializeBooksRecyclerView(ArrayList<MyBook> myBoosL) {
+        booksRecyclerView.setHasFixedSize(true);
+        booksAdapter = new BooksAdapter(getApplicationContext(), myBoosL);
+        booksRecyclerView.setAdapter(booksAdapter);
+        booksRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+    }
 }

@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -34,14 +33,8 @@ public class Authors extends AppCompatActivity {
         authorsList = new ArrayList<>();
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        initializeRecyclerView();
+
         getAllAuthors();
-
-    }
-
-    private void initializeRecyclerView() {
-        authorsRecyclerView.setHasFixedSize(true);
-        authorsRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
 
     private void getAllAuthors() {
@@ -51,7 +44,6 @@ public class Authors extends AppCompatActivity {
                 .builder()
                 .build())
                 .enqueue(new ApolloCall.Callback<FindAvailableAuthorsQuery.Data>() {
-
                     @Override
                     public void onResponse(@NotNull Response<FindAvailableAuthorsQuery.Data> response) {
 
@@ -70,8 +62,7 @@ public class Authors extends AppCompatActivity {
 
                                     @Override
                                     public void run() {
-                                        myAuthorsAdapter = new AuthorsAdapter(getApplicationContext(), authorsList);
-                                        authorsRecyclerView.setAdapter(myAuthorsAdapter);
+                                       initializeRecyclerView(authorsList);
                                     }
                                 });
                             } else {
@@ -81,7 +72,6 @@ public class Authors extends AppCompatActivity {
                         } else {
                             Log.d("NOOBJECT", "FETCHED");
                         }
-
                     }
 
                     @Override
@@ -90,9 +80,14 @@ public class Authors extends AppCompatActivity {
 
                     }
                 });
-
     }
 
+    private void initializeRecyclerView(ArrayList<MyAuthor> myAuthorsList) {
+        authorsRecyclerView.setHasFixedSize(true);
+        myAuthorsAdapter = new AuthorsAdapter(getApplicationContext(), myAuthorsList);
+        authorsRecyclerView.setAdapter(myAuthorsAdapter);
+        authorsRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+    }
 }
 
 

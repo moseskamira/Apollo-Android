@@ -88,6 +88,7 @@ public class Authors extends AppCompatActivity {
         authorsRecyclerView.setAdapter(myAuthorsAdapter);
         authorsRecyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
+
 }
 
 
